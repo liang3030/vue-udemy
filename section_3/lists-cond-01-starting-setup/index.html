@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoalValue"/>
+      <button @click="addGoal">Add Goal</button>
+      <!-- if -->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-if="goals.length > 0">
+        <!-- key usage, similar as react -->
+        <li v-for="(goal, index) in goals" @click="removeGoal(index)" :key="goal">
+          <p>{{goal}} - {{index}}</p>
+          <input type="text" @click.stop>
+        </li>
+      </ul>
+
+      <!-- v-else: else should be used directly to the neighbour element -->
+      <!-- v-else-if: same usage -->
+      <!-- It is about adding the element in the dom or not -->
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-else="goals.length > 0">
+        <li>Goal</li>
+      </ul>
+
+      <!-- v-show: use alone without if -->
+      <!-- with v-show: the element is still in the dom, but just hidden the item -->
+      <!-- by default, it should first consider v-if, v-else. Only when a visiable and disvisible toggle frequently for an element -->
+      <p v-show="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      
+
+      <ul >
+        <li v-for="(value, key, index) in user">{{key}} - {{value}} - {{index}}</li>
+      </ul>
+
+
+      <ul >
+        <li v-for="num in 10">{{num}}</li>
+      </ul>
+    </section>
+  </body>
+</html>
